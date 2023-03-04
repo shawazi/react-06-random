@@ -1,13 +1,42 @@
 import axios from "axios";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-async function Data() {
-    try {
-        const response = await axios.get("https://randomuser.me/api/");
-        console.log(response);
-    } catch (error) {
-        console.error(error);
-    }
+export default function Data() {
+    const [data, setData] = useState(null);
+
+    const url = "https://randomuser.me/api/";
+
+    useEffect(() => {
+        axios
+        .get(url)
+        .then((response) => {
+            setData(response.data);
+        })
+        .catch(error => console.error(`Error: ${error}`))
+    }, []);
+
+    return (
+        <div>
+            {data && (
+                <Card user={data.results[0]} />
+            )}
+        </div>
+    )
 }
 
-export default Data();
+function Card({ user }) {
+    const fullName = `${user.name.first} ${user.name.last}`;
+    const profilePicture = user.picture.large;
+    const email = user.email;
+    const location = `${user.location.city}, ${user.location.state}, ${user.location.country}`;
+  
+    return (
+      <div>
+        <img src={profilePicture} alt={fullName} />
+        <h2>{fullName}</h2>
+        <p>{email}</p>
+        <p>{location}</p>
+      </div>
+    );
+  }
+  

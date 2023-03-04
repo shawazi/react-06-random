@@ -1,10 +1,10 @@
 import React from "react";
 import "./cards.css";
-import getData from "../data-axios/Data";
+import Data from "../data-axios/Data";
 
 const Cards = () => {
     return (
-        <getData />
+        <Data />
     )
 }
 
