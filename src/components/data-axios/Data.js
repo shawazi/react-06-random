@@ -17,9 +17,9 @@ export default function Data() {
 
     return (
         <div>
-            {data && (
+            {data && 
                 <Card user={data.results[0]} />
-            )}
+            }
         </div>
     )
 }
@@ -31,7 +31,7 @@ function Card({ user }) {
     const location = `${user.location.city}, ${user.location.state}, ${user.location.country}`;
   
     return (
-      <div>
+      <div className="card">
         <img src={profilePicture} alt={fullName} />
         <h2>{fullName}</h2>
         <p>{email}</p>
