@@ -4,22 +4,30 @@ import React, { useEffect, useState } from "react";
 export default function Data() {
     const [data, setData] = useState(null);
 
-    const url = "https://randomuser.me/api/";
-
     useEffect(() => {
+        fetchData();
+    }, []);
+
+    const fetchData = () => {
+        const url = "https://randomuser.me/api/";
         axios
         .get(url)
         .then((response) => {
             setData(response.data);
         })
         .catch(error => console.error(`Error: ${error}`))
-    }, []);
+    }
+
+    const handleClick = () => {
+        fetchData();
+    }
 
     return (
-        <div>
+        <div className="App">
             {data && 
                 <Card user={data.results[0]} />
             }
+            <button onClick={handleClick}>Click for a new FACE</button>
         </div>
     )
 }
