@@ -1,1 +1,1 @@
-https://shawazi.github.io/react-06-randy
+https://shawazi.github.io/react-06-random
